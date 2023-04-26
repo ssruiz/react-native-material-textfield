@@ -1,16 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
-import {
-  View,
-  TextInput,
-  Animated,
-  StyleSheet,
-  Platform,
-} from 'react-native';
+import { View, TextInput, Animated, StyleSheet, Platform } from 'react-native';
 
 import {
   ViewPropTypes,
   TextPropTypes,
+  TextInputPropTypes,
 } from 'deprecated-react-native-prop-types';
 
 import Line from '../line';
@@ -67,7 +62,7 @@ export default class TextField extends PureComponent {
   };
 
   static propTypes = {
-    ...TextInput.propTypes,
+    ...TextInputPropTypes,
 
     animationDuration: PropTypes.number,
 
@@ -448,7 +443,7 @@ export default class TextField extends PureComponent {
   inputProps() {
     let store = {};
 
-    for (let key in TextInput.propTypes) {
+    for (let key in TextInputPropTypes) {
       if ('defaultValue' === key) {
         continue;
       }
