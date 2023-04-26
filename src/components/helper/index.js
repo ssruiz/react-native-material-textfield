@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
-import { Animated, Text } from 'react-native';
+import { Animated } from 'react-native';
+import { TextPropTypes } from 'deprecated-react-native-prop-types';
 
 import styles from './styles';
 
@@ -11,7 +12,7 @@ export default class Helper extends PureComponent {
 
     disabled: PropTypes.bool,
 
-    style: Text.propTypes.style,
+    style: TextPropTypes.style,
 
     baseColor: PropTypes.string,
     errorColor: PropTypes.string,
@@ -39,8 +40,7 @@ export default class Helper extends PureComponent {
   componentDidMount() {
     let { focusAnimation } = this.props;
 
-    this.listener = focusAnimation
-      .addListener(this.onAnimation.bind(this));
+    this.listener = focusAnimation.addListener(this.onAnimation.bind(this));
   }
 
   componentWillUnmount() {
@@ -63,18 +63,9 @@ export default class Helper extends PureComponent {
 
   render() {
     let { errored, opacity } = this.state;
-    let {
-      style,
-      title,
-      error,
-      disabled,
-      baseColor,
-      errorColor,
-    } = this.props;
+    let { style, title, error, disabled, baseColor, errorColor } = this.props;
 
-    let text = errored?
-      error:
-      title;
+    let text = errored ? error : title;
 
     if (null == text) {
       return null;
@@ -83,9 +74,7 @@ export default class Helper extends PureComponent {
     let textStyle = {
       opacity,
 
-      color: !disabled && errored?
-        errorColor:
-        baseColor,
+      color: !disabled && errored ? errorColor : baseColor,
     };
 
     return (
